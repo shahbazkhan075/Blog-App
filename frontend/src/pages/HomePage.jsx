@@ -66,9 +66,8 @@ export default function HomePage() {
         <div className="flex flex-wrap gap-2 mb-8">
           {CATEGORIES.map((c) => (
             <button key={c} onClick={() => handleCategory(c)}
-              className={`px-4 py-2 rounded-full text-sm font-medium transition ${
-                category === c && !query ? 'bg-blue-600 text-white shadow-sm' : 'bg-white text-slate-600 border border-slate-200 hover:border-blue-300 hover:text-blue-600'
-              }`}>
+              className={`px-4 py-2 rounded-full text-sm font-medium transition ${category === c && !query ? 'bg-blue-600 text-white shadow-sm' : 'bg-white text-slate-600 border border-slate-200 hover:border-blue-300 hover:text-blue-600'
+                }`}>
               {c}
             </button>
           ))}

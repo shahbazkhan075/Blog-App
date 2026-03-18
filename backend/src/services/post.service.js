@@ -11,7 +11,20 @@ const paginate = async (filter, page, limit, sort = { createdAt: -1 }) => {
       .limit(Number(limit)),
     Post.countDocuments(filter),
   ]);
-  return { posts, pagination: { total, page: Number(page), limit: Number(limit), pages: Math.ceil(total / limit) } };
+
+  // Attach comment count to each post
+  const postIds = posts.map((p) => p._id);
+  const commentCounts = await Comment.aggregate([
+    { $match: { postId: { $in: postIds } } },
+    { $group: { _id: "$postId", count: { $sum: 1 } } },
+  ]);
+  const countMap = Object.fromEntries(commentCounts.map((c) => [c._id.toString(), c.count]));
+  const postsWithCount = posts.map((p) => ({
+    ...p.toObject(),
+    commentCount: countMap[p._id.toString()] || 0,
+  }));
+
+  return { posts: postsWithCount, pagination: { total, page: Number(page), limit: Number(limit), pages: Math.ceil(total / limit) } };
 };
 
 exports.getAll = (page, limit) => paginate({ isPublished: true }, page, limit);
