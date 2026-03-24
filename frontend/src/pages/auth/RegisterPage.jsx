@@ -37,7 +37,7 @@ export default function RegisterPage() {
         <span className="absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400">{icon}</span>
         <input type={type} value={form[key]} onChange={(e) => setForm({ ...form, [key]: e.target.value })}
           placeholder={placeholder}
-          className={`w-full pl-10 pr-4 py-3 border rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 ${errors[key] ? 'border-red-400' : 'border-slate-200'}`} />
+          className={`w-full pl-10 pr-4 py-3 border rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-slate-700 dark:text-slate-100 dark:border-slate-600 ${errors[key] ? 'border-red-400' : 'border-slate-200'}`} />
       </div>
       {errors[key] && <p className="text-red-500 text-xs mt-1">{errors[key]}</p>}
     </div>
@@ -52,11 +52,11 @@ export default function RegisterPage() {
             <div className="inline-flex items-center justify-center w-14 h-14 bg-blue-600 rounded-2xl mb-4">
               <FiEdit3 className="text-white text-2xl" />
             </div>
-            <h1 className="text-2xl font-bold text-slate-800">Create your account</h1>
-            <p className="text-slate-500 text-sm mt-1">Join thousands of writers on BlogSpace</p>
+            <h1 className="text-2xl font-bold text-slate-800 dark:text-slate-100">Create your account</h1>
+            <p className="text-slate-500 dark:text-slate-400 text-sm mt-1">Join thousands of writers on BlogSpace</p>
           </div>
 
-          <div className="bg-white rounded-2xl shadow-sm border border-slate-100 p-8">
+          <div className="bg-white dark:bg-slate-800 rounded-2xl shadow-sm border border-slate-100 dark:border-slate-700 p-8">
             <form onSubmit={handleSubmit} className="space-y-5">
               {field('name', 'Full Name', 'text', <FiUser />, 'John Doe')}
               {field('email', 'Email', 'email', <FiMail />, 'you@example.com')}
@@ -69,7 +69,7 @@ export default function RegisterPage() {
               </button>
             </form>
 
-            <p className="text-center text-sm text-slate-500 mt-6">
+            <p className="text-center text-sm text-slate-500 dark:text-slate-400 mt-6">
               Already have an account?{' '}
               <Link to="/login" className="text-blue-600 font-semibold hover:underline">Sign in</Link>
             </p>

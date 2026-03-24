@@ -134,7 +134,7 @@ export default function ProfilePage() {
       <div className="max-w-5xl mx-auto px-4 sm:px-6 py-10">
 
         {/* Profile Card */}
-        <div className="bg-white rounded-2xl border border-slate-100 shadow-sm overflow-hidden mb-10">
+        <div className="bg-white dark:bg-slate-800 rounded-2xl border border-slate-100 dark:border-slate-700 shadow-sm overflow-hidden mb-10">
           <div className="h-32 bg-gradient-to-r from-blue-500 via-blue-600 to-indigo-600" />
           <div className="px-6 sm:px-8 pb-8">
             <div className="flex items-end justify-between -mt-14 mb-5">
@@ -194,9 +194,9 @@ export default function ProfilePage() {
               </form>
             ) : (
               <div>
-                <h1 className="text-2xl font-bold text-slate-800 mb-1">{profile.name}</h1>
+                <h1 className="text-2xl font-bold text-slate-800 dark:text-slate-100 mb-1">{profile.name}</h1>
                 {profile.bio
-                  ? <p className="text-slate-500 text-sm leading-relaxed mb-3 max-w-xl">{profile.bio}</p>
+                  ? <p className="text-slate-500 dark:text-slate-400 text-sm leading-relaxed mb-3 max-w-xl">{profile.bio}</p>
                   : isOwn && <p className="text-slate-400 text-sm italic mb-3">Add a bio to tell people about yourself.</p>
                 }
                 <div className="flex flex-wrap items-center gap-4 text-xs text-slate-400">
@@ -210,7 +210,7 @@ export default function ProfilePage() {
 
         {/* Posts */}
         <div className="flex items-center justify-between mb-6">
-          <h2 className="text-xl font-bold text-slate-800">
+          <h2 className="text-xl font-bold text-slate-800 dark:text-slate-100">
             {isOwn ? 'My Posts' : `Posts by ${profile.name}`}
           </h2>
           {isOwn && (
@@ -229,7 +229,7 @@ export default function ProfilePage() {
             {userPosts.map((p) => <PostCard key={p._id} post={p} />)}
           </div>
         ) : (
-          <div className="text-center py-16 bg-white rounded-2xl border border-slate-100">
+          <div className="text-center py-16 bg-white dark:bg-slate-800 rounded-2xl border border-slate-100 dark:border-slate-700">
             <div className="text-5xl mb-3">✍️</div>
             <p className="text-slate-500 font-medium mb-1">No posts yet</p>
             {isOwn && (

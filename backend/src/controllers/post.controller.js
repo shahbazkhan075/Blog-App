@@ -9,7 +9,7 @@ const parseTags = (tags) => {
 
 exports.getAll = async (req, res, next) => {
   try {
-    const { page = 1, limit = 10 } = req.query;
+    const { page = 1, limit = 6 } = req.query;
     res.json(await postService.getAll(page, limit));
   } catch (err) { next(err); }
 };
@@ -84,5 +84,12 @@ exports.getMyPosts = async (req, res, next) => {
   try {
     const { page = 1, limit = 10 } = req.query;
     res.json(await postService.getMyPosts(req.user.id, page, limit));
+  } catch (err) { next(err); }
+};
+
+exports.getTrending = async (req, res, next) => {
+  try {
+    const { limit = 5 } = req.query;
+    res.json(await postService.getTrending(limit));
   } catch (err) { next(err); }
 };

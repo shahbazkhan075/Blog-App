@@ -31,5 +31,5 @@ export default function QuillEditor({ value, onChange }) {
     if (q && value !== q.root.innerHTML) q.root.innerHTML = value || '';
   }, [value]);
 
-  return <div ref={containerRef} className="bg-white" />;
+  return <div ref={containerRef} className="bg-white dark:bg-slate-900" />;
 }

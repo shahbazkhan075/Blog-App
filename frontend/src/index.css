@@ -1,5 +1,7 @@
 @import "tailwindcss";
 
+@variant dark (&:where(.dark, .dark *));
+
 @theme {
   --font-sans: 'Inter', sans-serif;
   --font-serif: 'Merriweather', serif;
@@ -23,6 +25,11 @@ body {
   color: #1e293b;
 }
 
+.dark body {
+  background-color: #020617;
+  color: #f1f5f9;
+}
+
 .prose h1, .prose h2, .prose h3 { font-family: var(--font-serif); }
 
 .line-clamp-2 {
@@ -44,3 +51,28 @@ body {
 .ql-editor { min-height: 300px; }
 .ql-toolbar { border-radius: 8px 8px 0 0 !important; }
 .ql-container { border-radius: 0 0 8px 8px !important; }
+
+/* Quill dark mode */
+.dark .ql-toolbar {
+  background-color: #1e293b;
+  border-color: #334155 !important;
+}
+.dark .ql-toolbar .ql-stroke { stroke: #94a3b8; }
+.dark .ql-toolbar .ql-fill { fill: #94a3b8; }
+.dark .ql-toolbar .ql-picker { color: #94a3b8; }
+.dark .ql-toolbar .ql-picker-options { background-color: #1e293b; border-color: #334155; }
+.dark .ql-toolbar button:hover .ql-stroke,
+.dark .ql-toolbar button.ql-active .ql-stroke { stroke: #60a5fa; }
+.dark .ql-toolbar button:hover .ql-fill,
+.dark .ql-toolbar button.ql-active .ql-fill { fill: #60a5fa; }
+.dark .ql-container {
+  background-color: #0f172a;
+  border-color: #334155 !important;
+  color: #f1f5f9;
+}
+.dark .ql-editor { color: #f1f5f9; }
+.dark .ql-editor.ql-blank::before { color: #64748b; }
+
+/* Hide scrollbar for trending row */
+.scrollbar-hide::-webkit-scrollbar { display: none; }
+.scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }

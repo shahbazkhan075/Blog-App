@@ -87,3 +87,12 @@ exports.toggleLike = async (id, userId) => {
 
 exports.getMyPosts = (userId, page, limit) =>
   paginate({ author: userId }, page, limit);
+
+exports.getTrending = async (limit = 5) => {
+  const posts = await Post.find({ isPublished: true })
+    .populate("author", "name profilePicture")
+    .sort({ viewCount: -1, likes: -1 })
+    .limit(Number(limit))
+    .lean();
+  return posts;
+};

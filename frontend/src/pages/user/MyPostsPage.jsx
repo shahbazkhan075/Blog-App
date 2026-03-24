@@ -26,8 +26,8 @@ export default function MyPostsPage() {
       <div className="max-w-5xl mx-auto px-4 sm:px-6 py-10">
         <div className="flex items-center justify-between mb-8">
           <div>
-            <h1 className="text-3xl font-bold text-slate-800">My Posts</h1>
-            <p className="text-slate-500 text-sm mt-1">Manage your published posts and drafts</p>
+            <h1 className="text-3xl font-bold text-slate-800 dark:text-slate-100">My Posts</h1>
+            <p className="text-slate-500 dark:text-slate-400 text-sm mt-1">Manage your published posts and drafts</p>
           </div>
           <Link to="/create-post" className="flex items-center gap-2 bg-blue-600 text-white px-5 py-2.5 rounded-xl text-sm font-semibold hover:bg-blue-700 transition">
             <FiPlus /> New Post
@@ -53,7 +53,7 @@ export default function MyPostsPage() {
         ) : (
           <div className="space-y-4">
             {myPosts.map((post) => (
-              <div key={post._id} className="bg-white rounded-2xl border border-slate-100 p-5 flex items-start gap-4 hover:shadow-sm transition">
+              <div key={post._id} className="bg-white dark:bg-slate-800 rounded-2xl border border-slate-100 dark:border-slate-700 p-5 flex items-start gap-4 hover:shadow-sm transition">
                 {post.featuredImage && (
                   <img src={post.featuredImage} alt={post.title} className="w-20 h-20 rounded-xl object-cover flex-shrink-0 hidden sm:block" />
                 )}
@@ -65,7 +65,7 @@ export default function MyPostsPage() {
                     <span className="text-xs text-slate-400 bg-slate-100 px-2 py-0.5 rounded-full">{post.category}</span>
                   </div>
                   <Link to={`/post/${post._id}`}>
-                    <h3 className="font-semibold text-slate-800 hover:text-blue-600 transition truncate">{post.title}</h3>
+                    <h3 className="font-semibold text-slate-800 dark:text-slate-100 hover:text-blue-600 transition truncate">{post.title}</h3>
                   </Link>
                   <div className="flex items-center gap-4 mt-2 text-xs text-slate-400">
                     <span>{format(new Date(post.createdAt), 'MMM dd, yyyy')}</span>

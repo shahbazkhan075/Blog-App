@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { fetchPostById, toggleLike, deletePost } from '../store/slices/postSlice';
 import { fetchComments, clearComments } from '../store/slices/commentSlice';
 import CommentSection from '../components/comments/CommentSection';
+import ReadingProgressBar from '../components/common/ReadingProgressBar';
 import { Helmet } from 'react-helmet-async';
 import { FiHeart, FiEye, FiEdit2, FiTrash2, FiShare2, FiClock, FiArrowLeft } from 'react-icons/fi';
 import { format } from 'date-fns';
@@ -61,6 +62,7 @@ export default function SinglePostPage() {
 
   return (
     <>
+      <ReadingProgressBar />
       <Helmet>
         <title>{currentPost.title} — BlogSpace</title>
         <meta name="description" content={currentPost.content?.replace(/<[^>]+>/g, '').substring(0, 160)} />
@@ -68,7 +70,7 @@ export default function SinglePostPage() {
 
       <div className="max-w-4xl mx-auto px-4 sm:px-6 py-8">
         {/* Back */}
-        <button onClick={() => navigate(-1)} className="flex items-center gap-2 text-slate-500 hover:text-blue-600 text-sm mb-6 transition-colors">
+        <button onClick={() => navigate(-1)} className="flex items-center gap-2 text-slate-500 dark:text-slate-400 hover:text-blue-600 text-sm mb-6 transition-colors">
           <FiArrowLeft /> Back
         </button>
 
@@ -88,19 +90,19 @@ export default function SinglePostPage() {
         </div>
 
         {/* Title */}
-        <h1 className="text-3xl md:text-4xl font-bold text-slate-900 leading-tight mb-6">{currentPost.title}</h1>
+        <h1 className="text-3xl md:text-4xl font-bold text-slate-900 dark:text-slate-50 leading-tight mb-6">{currentPost.title}</h1>
 
         {/* Author row */}
-        <div className="flex items-center justify-between flex-wrap gap-4 pb-6 border-b border-slate-100 mb-8">
+        <div className="flex items-center justify-between flex-wrap gap-4 pb-6 border-b border-slate-100 dark:border-slate-700 mb-8">
           <Link to={`/profile/${currentPost.author?._id}`} className="flex items-center gap-3">
             <img src={resolveImg(currentPost.author?.profilePicture) || `https://ui-avatars.com/api/?name=${encodeURIComponent(currentPost.author?.name || 'U')}&background=3b82f6&color=fff`}
               alt={currentPost.author?.name} className="w-11 h-11 rounded-full object-cover" />
             <div>
-              <p className="font-semibold text-slate-800 text-sm">{currentPost.author?.name}</p>
+              <p className="font-semibold text-slate-800 dark:text-slate-100 text-sm">{currentPost.author?.name}</p>
               <p className="text-xs text-slate-400">{format(new Date(currentPost.createdAt), 'MMM dd, yyyy')}</p>
             </div>
           </Link>
-          <div className="flex items-center gap-4 text-sm text-slate-500">
+          <div className="flex items-center gap-4 text-sm text-slate-500 dark:text-slate-400">
             <span className="flex items-center gap-1"><FiEye size={14} /> {currentPost.viewCount}</span>
             <span className="flex items-center gap-1"><FiClock size={14} /> {readTime} min read</span>
           </div>
@@ -130,11 +132,11 @@ export default function SinglePostPage() {
         </div>
 
         {/* Content */}
-        <div className="prose prose-slate prose-lg max-w-none mb-12"
+        <div className="prose prose-slate dark:prose-invert prose-lg max-w-none mb-12"
           dangerouslySetInnerHTML={{ __html: currentPost.content }} />
 
         {/* Comments */}
-        <div className="border-t border-slate-100 pt-8">
+        <div className="border-t border-slate-100 dark:border-slate-700 pt-8">
           <CommentSection postId={id} />
         </div>
       </div>

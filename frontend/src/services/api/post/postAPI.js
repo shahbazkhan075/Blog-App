@@ -11,6 +11,7 @@ const postAPI = {
   getByCategory: (category, page = 1) => axiosClient.get(`/posts/category/${category}?page=${page}`),
   toggleLike: (id) => axiosClient.post(`/posts/${id}/like`),
   getMyPosts: (page = 1) => axiosClient.get(`/posts/my-posts?page=${page}`),
+  getTrending: () => axiosClient.get('/posts/trending'),
   getUserPosts: (userId, page = 1) => axiosClient.get(`/users/${userId}/posts?page=${page}`),
 };
 

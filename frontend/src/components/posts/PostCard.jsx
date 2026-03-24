@@ -29,7 +29,7 @@ export default function PostCard({ post }) {
   const authorImg = resolveImg(post.author?.profilePicture);
 
   return (
-    <article className="bg-white rounded-2xl shadow-sm border border-slate-100 overflow-hidden hover:shadow-lg hover:-translate-y-1 transition-all duration-200 flex flex-col">
+    <article className="bg-white dark:bg-slate-800 rounded-2xl shadow-sm border border-slate-100 dark:border-slate-700 overflow-hidden hover:shadow-lg hover:-translate-y-1 transition-all duration-200 flex flex-col">
       {/* Image */}
       <Link to={`/post/${post._id}`} className="block overflow-hidden">
         {featuredImg ? (
@@ -52,13 +52,13 @@ export default function PostCard({ post }) {
 
         {/* Title */}
         <Link to={`/post/${post._id}`}>
-          <h2 className="font-bold text-slate-800 text-lg leading-snug mb-2 hover:text-blue-600 transition-colors line-clamp-2">
+          <h2 className="font-bold text-slate-800 dark:text-slate-100 text-lg leading-snug mb-2 hover:text-blue-600 transition-colors line-clamp-2">
             {post.title}
           </h2>
         </Link>
 
         {/* Excerpt */}
-        <p className="text-slate-500 text-sm leading-relaxed mb-4 flex-1 line-clamp-3">{excerpt}...</p>
+        <p className="text-slate-500 dark:text-slate-400 text-sm leading-relaxed mb-4 flex-1 line-clamp-3">{excerpt}...</p>
 
         {/* Author row */}
         <Link to={`/profile/${post.author?._id}`} className="flex items-center gap-2 mb-4">
@@ -68,7 +68,7 @@ export default function PostCard({ post }) {
             className="w-8 h-8 rounded-full object-cover ring-2 ring-slate-100"
           />
           <div>
-            <p className="text-xs font-semibold text-slate-700 leading-none">{post.author?.name}</p>
+            <p className="text-xs font-semibold text-slate-700 dark:text-slate-200 leading-none">{post.author?.name}</p>
             <p className="text-xs text-slate-400 mt-0.5">
               {formatDistanceToNow(new Date(post.createdAt), { addSuffix: true })}
             </p>
@@ -76,7 +76,7 @@ export default function PostCard({ post }) {
         </Link>
 
         {/* Stats bar */}
-        <div className="flex items-center gap-3 pt-3 border-t border-slate-100">
+        <div className="flex items-center gap-3 pt-3 border-t border-slate-100 dark:border-slate-700">
           <div className="flex items-center gap-1.5 bg-red-50 text-red-500 px-3 py-1.5 rounded-full text-xs font-semibold">
             <FiHeart size={13} />
             <span>{post.likes?.length || 0}</span>

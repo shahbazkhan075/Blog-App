@@ -82,32 +82,32 @@ export default function CreateEditPostPage() {
     <>
       <Helmet><title>{id ? 'Edit Post' : 'Create Post'} — BlogSpace</title></Helmet>
       <div className="max-w-4xl mx-auto px-4 sm:px-6 py-10">
-        <h1 className="text-3xl font-bold text-slate-800 mb-8">{id ? 'Edit Post' : 'Write New Post'}</h1>
+        <h1 className="text-3xl font-bold text-slate-800 dark:text-slate-100 mb-8">{id ? 'Edit Post' : 'Write New Post'}</h1>
 
         <form onSubmit={handleSubmit} className="space-y-6">
           {/* Title */}
           <div>
-            <label className="block text-sm font-semibold text-slate-700 mb-1.5">Title *</label>
+            <label className="block text-sm font-semibold text-slate-700 dark:text-slate-200 mb-1.5">Title *</label>
             <input value={form.title} onChange={(e) => setForm({ ...form, title: e.target.value })}
               placeholder="Enter a compelling title..."
-              className={`w-full px-4 py-3 border rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 ${errors.title ? 'border-red-400' : 'border-slate-200'}`} />
+              className={`w-full px-4 py-3 border rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-slate-800 dark:text-slate-100 dark:border-slate-600 ${errors.title ? 'border-red-400' : 'border-slate-200'}`} />
             {errors.title && <p className="text-red-500 text-xs mt-1">{errors.title}</p>}
           </div>
 
           {/* Category + Tags row */}
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div>
-              <label className="block text-sm font-semibold text-slate-700 mb-1.5">Category</label>
+              <label className="block text-sm font-semibold text-slate-700 dark:text-slate-200 mb-1.5">Category</label>
               <select value={form.category} onChange={(e) => setForm({ ...form, category: e.target.value })}
-                className="w-full px-4 py-3 border border-slate-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white">
+                className="w-full px-4 py-3 border border-slate-200 dark:border-slate-600 dark:bg-slate-800 dark:text-slate-100 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white">
                 {CATEGORIES.map((c) => <option key={c}>{c}</option>)}
               </select>
             </div>
             <div>
-              <label className="block text-sm font-semibold text-slate-700 mb-1.5">Tags <span className="font-normal text-slate-400">(comma separated)</span></label>
+              <label className="block text-sm font-semibold text-slate-700 dark:text-slate-200 mb-1.5">Tags <span className="font-normal text-slate-400">(comma separated)</span></label>
               <input value={form.tags} onChange={(e) => setForm({ ...form, tags: e.target.value })}
                 placeholder="react, javascript, web"
-                className="w-full px-4 py-3 border border-slate-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
+                className="w-full px-4 py-3 border border-slate-200 dark:border-slate-600 dark:bg-slate-800 dark:text-slate-100 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
             </div>
           </div>
 
@@ -133,7 +133,7 @@ export default function CreateEditPostPage() {
 
           {/* Content */}
           <div>
-            <label className="block text-sm font-semibold text-slate-700 mb-1.5">Content *</label>
+            <label className="block text-sm font-semibold text-slate-700 dark:text-slate-200 mb-1.5">Content *</label>
             <div className={`rounded-xl overflow-hidden border ${errors.content ? 'border-red-400' : 'border-slate-200'}`}>
               <QuillEditor value={form.content} onChange={(v) => setForm({ ...form, content: v })} />
             </div>

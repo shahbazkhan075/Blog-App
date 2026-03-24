@@ -5,6 +5,7 @@ const auth = require("../middleware/auth.middleware");
 const upload = require("../middleware/upload.middleware");
 
 router.get("/", postCtrl.getAll);
+router.get("/trending", postCtrl.getTrending);
 router.get("/my-posts", auth, postCtrl.getMyPosts);
 router.get("/search", postCtrl.search);
 router.get("/tag/:tag", postCtrl.getByTag);

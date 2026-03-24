@@ -38,7 +38,7 @@ export default function CommentSection({ postId }) {
 
   return (
     <section className="mt-10">
-      <h3 className="text-xl font-bold text-slate-800 mb-6">
+      <h3 className="text-xl font-bold text-slate-800 dark:text-slate-100 mb-6">
         Comments <span className="text-blue-600">({comments.length})</span>
       </h3>
 
@@ -50,7 +50,7 @@ export default function CommentSection({ postId }) {
           <div className="flex-1">
             <textarea value={text} onChange={(e) => setText(e.target.value)} rows={3}
               placeholder="Share your thoughts..."
-              className="w-full px-4 py-3 border border-slate-200 rounded-xl text-sm resize-none focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent" />
+              className="w-full px-4 py-3 border border-slate-200 dark:border-slate-600 dark:bg-slate-800 dark:text-slate-100 rounded-xl text-sm resize-none focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent" />
             <div className="flex justify-end mt-2">
               <button type="submit" disabled={submitting}
                 className="flex items-center gap-2 bg-blue-600 text-white px-5 py-2 rounded-lg text-sm font-medium hover:bg-blue-700 transition disabled:opacity-50">
@@ -87,10 +87,10 @@ export default function CommentSection({ postId }) {
             <div key={c._id} className="flex gap-3">
               <img src={resolveImg(c.userId?.profilePicture) || `https://ui-avatars.com/api/?name=${encodeURIComponent(c.userId?.name || 'U')}&background=e2e8f0&color=475569&size=40`}
                 alt={c.userId?.name} className="w-10 h-10 rounded-full object-cover flex-shrink-0" />
-              <div className="flex-1 bg-slate-50 rounded-xl px-4 py-3">
+              <div className="flex-1 bg-slate-50 dark:bg-slate-800 rounded-xl px-4 py-3">
                 <div className="flex items-center justify-between mb-1">
                   <div className="flex items-center gap-2">
-                    <span className="font-semibold text-slate-800 text-sm">{c.userId?.name}</span>
+                    <span className="font-semibold text-slate-800 dark:text-slate-100 text-sm">{c.userId?.name}</span>
                     <span className="text-xs text-slate-400">{formatDistanceToNow(new Date(c.createdAt), { addSuffix: true })}</span>
                   </div>
                   {user && user._id === c.userId?._id && (
@@ -99,7 +99,7 @@ export default function CommentSection({ postId }) {
                     </button>
                   )}
                 </div>
-                <p className="text-slate-700 text-sm leading-relaxed">{c.comment}</p>
+                <p className="text-slate-700 dark:text-slate-300 text-sm leading-relaxed">{c.comment}</p>
               </div>
             </div>
           ))}

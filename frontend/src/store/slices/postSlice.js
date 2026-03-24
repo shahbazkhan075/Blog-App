@@ -22,13 +22,14 @@ export const fetchUserPosts = createAsyncThunk('posts/userPosts', async ({ userI
   try { return (await postAPI.getUserPosts(userId, page)).data; }
   catch (err) { return rejectWithValue(err.response?.data); }
 });
+export const fetchTrending = createAsyncThunk('posts/trending', handle(() => postAPI.getTrending()));
 
 const setLoading = (s) => { s.isLoading = true; s.error = null; };
 const setError = (s, a) => { s.isLoading = false; s.error = a.payload?.message || 'Error'; };
 
 const postSlice = createSlice({
   name: 'posts',
-  initialState: { posts: [], myPosts: [], userPosts: [], currentPost: null, isLoading: false, error: null, pagination: null },
+  initialState: { posts: [], myPosts: [], userPosts: [], trendingPosts: [], currentPost: null, isLoading: false, error: null, pagination: null },
   reducers: { clearCurrentPost: (s) => { s.currentPost = null; } },
   extraReducers: (b) => {
     b.addCase(fetchPosts.pending, setLoading)
@@ -61,7 +62,8 @@ const postSlice = createSlice({
      .addCase(fetchMyPosts.rejected, setError)
      .addCase(fetchUserPosts.pending, setLoading)
      .addCase(fetchUserPosts.fulfilled, (s, a) => { s.isLoading = false; s.userPosts = a.payload.posts; })
-     .addCase(fetchUserPosts.rejected, setError);
+     .addCase(fetchUserPosts.rejected, setError)
+     .addCase(fetchTrending.fulfilled, (s, a) => { s.trendingPosts = a.payload; });
   },
 });
 
